@@ -13,3 +13,9 @@ const { mix } = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
+
+mix.styles([
+    'node_modules/md-bootstrap/css/mdb.css'
+], 'public/css/mdb.css');
+
+mix.js('resources/assets/js/mdb.js', 'public/js');
