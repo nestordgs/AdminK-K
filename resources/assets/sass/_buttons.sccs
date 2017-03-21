@@ -1,0 +1,15 @@
+.btn-soluciones {
+  @extend .btn-primary;
+  &:hover {
+    background-color: $company-color-hover;
+  }
+  &:focus {
+    background-color: $company-color-hover;
+  }
+  &:active {
+    background-color: $company-color-hover;
+  }
+}
+.btn-soluciones {
+  @extend .bg-soluciones;
+}

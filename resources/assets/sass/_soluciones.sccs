@@ -1,0 +1,61 @@
+.bg-soluciones {
+  background-color: $company-color;
+}
+// MD Bootstrap Faltantes
+.card {
+  .card-block {
+    position: relative;
+    h3, h4, h5, h6 {
+      font-weight: 400;
+    }
+  }
+  .form-header {
+    color: #fff;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    border-radius: 2px;
+    h3, h4, h5, h6 {
+      margin: 0;
+      padding: .7rem;
+    }
+  }
+}
+.card-block {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+.md-form {
+  position: relative;
+  & .btn {
+    margin-bottom: 1rem;
+  }
+  & .prefix {
+    position: absolute;
+    width: 3rem;
+    font-size: 2rem;
+    transition: color .2s;
+  }
+  & .prefix~input, & .prefix~textarea {
+    margin-left: 3rem;
+    width: calc(100% - 3rem);
+  }
+  & .prefix~label {
+    margin-left: 3rem;
+  }
+  & label {
+    color: #757575;
+    position: absolute;
+    top: .8rem;
+    left: 0;
+    font-size: 1rem;
+    cursor: text;
+    transition: .2s ease-out;
+    &.active {
+      font-size: .8rem;
+      transform: translateY(-140%);
+    }
+  }
+}
