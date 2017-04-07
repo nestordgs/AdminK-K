@@ -1,6 +1,12 @@
 .bg-soluciones {
   background-color: $company-color;
 }
+tr {
+  &.bg-soluciones {
+    @extend .bg-soluciones;
+    color: #FFF;
+  }
+}
 // MD Bootstrap Faltantes
 .card {
   .card-block {

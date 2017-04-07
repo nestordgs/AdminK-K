@@ -38,14 +38,25 @@
                     @if(!Auth::guest())
                         <ul class="nav navbar-nav">
                             <li class="nav-item active">
-                                <a class="nav-link">Home <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link">Features</a>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Clients <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <router-link :to="{ name: 'listCli' }">List</router-link>
+                                        <router-link :to="{ name: 'createCli' }">Create</router-link>
+                                    </li>
+                                </ul>
                             </li>
-                            <li class="nav-item">
+                            {{--<li class="nav-item">
+                                <a class="nav-link" href="{{ route('client') }}">Clients</a>
+                            </li>--}}
+                            {{--<li class="nav-item">
                                 <a class="nav-link">Pricing</a>
-                            </li>
+                            </li>--}}
                         </ul>
                     @endif
                     <ul class="nav navbar-nav navbar-right">
@@ -74,6 +85,8 @@
             </div>
         </nav>
         @yield('content')
+        {{--<router-view></router-view>--}}
+
     </div>
 
     <!-- Scripts -->
