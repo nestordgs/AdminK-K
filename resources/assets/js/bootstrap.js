@@ -31,6 +31,7 @@ window.axios.defaults.headers.common = {
     'X-CSRF-TOKEN': window.Laravel.csrfToken,
     'X-Requested-With': 'XMLHttpRequest'
 };
+window.axios.defaults.baseURL = 'http://adminkyk.dev';
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -44,3 +45,5 @@ window.axios.defaults.headers.common = {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+window.swal = require('sweetalert2');
