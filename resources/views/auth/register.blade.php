@@ -24,9 +24,25 @@
                             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }} md-form">
                                 <label for="username" class="control-label">Username</label>
                                 <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required>
-                                @if ($errors->has('name'))
+                                @if ($errors->has('username'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }} md-form">
+                                {{--<label for="name" class="control-label">Name</label>--}}
+                                {{--<input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>--}}
+                                <div class="mdl-selectfield" name="role" id="role">
+                                    <select class="browser-default">
+                                        <option value="" selected>Choose one role...</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="empoloyee">Empoloyee</option>
+                                    </select>
+                                </div>
+                                @if ($errors->has('role'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('role') }}</strong>
                                     </span>
                                 @endif
                             </div>
