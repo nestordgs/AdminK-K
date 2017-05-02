@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'Administrativo SolucionesK&K',
 
     /*
     |--------------------------------------------------------------------------
@@ -172,6 +172,7 @@ return [
          * Other Packages Added
          */
         Laravel\Passport\PassportServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -13,7 +13,11 @@
 .btn-soluciones {
   @extend .bg-soluciones;
 }
-
+.btn {
+  i.fa {
+    font-size: inherit;
+  }
+}
 /* ==========  Select Field ========== */
 
 /* Style Select Field */

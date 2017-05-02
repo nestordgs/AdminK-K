@@ -29,8 +29,7 @@
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{--{{ config('app.name', 'Laravel') }}--}}
+                    <a class="navbar-brand">
                         <img src="{{ asset('img/soluciones-white.png') }}" class="img-responsive" alt="">
                     </a>
                 </div>
