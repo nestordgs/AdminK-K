@@ -11,4 +11,9 @@ class TypeDoc extends Model
     ];
 
     protected $table = 'type_docs';
+
+    public function client()
+    {
+        return $this->hasMany('App\Client');
+    }
 }

@@ -8,7 +8,7 @@
                             <h4><i class="fa fa-lock"></i> Create Client:</h4>
                         </div>
                         <div class="panel-body">
-                            <create-cli-form :client="client" @submit="submit"></create-cli-form>
+                            <create-cli-form :client="client" :phones="phones" @submit="submit"></create-cli-form>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,8 @@
                     address: '',
                     email: '',
                     contact: '',
-                }
+                },
+                phones: []
             };
         },
         ready() {
@@ -60,7 +61,7 @@
                     let errors = Object.assign({}, response);
                     for (let [k,value] of Object.entries(errors.response.data)){
                         swal({
-                            title: 'Something went wrong',
+                            title: 'Something Went Wrong',
                             type: 'error',
                             text: value,
                         });
@@ -75,7 +76,8 @@
                     address: '',
                     email: '',
                     contact: '',
-                }
+                };
+                this.phones = {}
             }
         }
     }

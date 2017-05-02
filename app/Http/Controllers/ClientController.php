@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Validator;
 use App\Client;
+use App\ClientPhone;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -15,7 +16,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
+        $clients = Client::with('type_doc')->get();
 
         return response()->json($clients,200);
     }
@@ -38,6 +39,8 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+        $matches = [];
+//        return response()->json($request->only('phones'),200);
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:100|string',
@@ -63,6 +66,18 @@ class ClientController extends Controller
 
         $client->save();
 
+        if ($request->has('phones')) {
+
+            $phones = json_decode($request->get('phones'));
+
+            foreach ($phones as $phone) {
+
+                if (is_numeric($phone->number)) {
+                    $client->phones()->save(new ClientPhone((array) $phone));
+                }
+            }
+        }
+
         return response()->json('Client created',201);
     }
 
@@ -85,7 +100,13 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        //
+        $client = Client::with('phones')->find($id);
+
+        if (count($client) == 0) {
+            return response()->json('Client doesn\'t exist', 422);
+        }
+
+        return response()->json($client,200);
     }
 
     /**
@@ -97,7 +118,52 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:100|string',
+            'id_type_doc' => 'required|numeric',
+            'number_rif' => 'required|max:10|min:7|string',
+            'address' => 'required|string',
+            'email' => 'required|email',
+            'contact' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $client = Client::find($id);
+
+        $client->name = $request->get('name');
+        $client->address = $request->get('address');
+        $client->contact = $request->get('contact');
+        $client->id_type_doc = $request->get('id_type_doc');
+        $client->number_rif = $request->get('number_rif');
+        $client->email = $request->get('email');
+
+        $saved = $client->save();
+
+        if (!$saved) {
+            return response()->json('Something went wrong', 422);
+        }
+
+        $phones = json_decode($request->get('phones'));
+
+        foreach ($phones as $phone) {
+
+            if (is_numeric($phone->number)) {
+
+                if (isset($phone->id)){
+                    $savePhone = ClientPhone::updateOrCreate(
+                        ['id' => $phone->id],
+                        ['number' => $phone->number]
+                    );
+                } else {
+                    $client->phones()->save(new ClientPhone((array) $phone));
+                }
+            }
+        }
+
+        return response()->json('Client went updated successfully',200);
     }
 
     /**

@@ -10,7 +10,7 @@
             <select v-model="client.id_type_doc" class="browser-default">
                 <option v-for="typeDoc in typeDocs" v-bind:value="typeDoc.id">
                     {{ typeDoc.name }}
-            </option>
+                </option>
             </select>
         </div>
         <div class="form-group md-form">
@@ -29,6 +29,21 @@
             <label for="contact" class="control-label">Contact</label>
             <input v-model="client.contact" type="text" class="form-control" name="contact" id="contact">
         </div>
+        <div class="form-phones">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group md-form" v-for="(phone, index) in phones">
+                        <label class="control-label" v-bind:class="{ active: phone.number }">Phone <i class="fa fa-phone" aria-hidden="true"></i></label>
+                        <input v-model="phone.number" type="text" class="form-control" name="phone" v-bind:id="'phone_'+index">
+                    </div>
+                </div>
+                <div class="col-xs-12 text-right">
+                    <button @click="addPhone" type="button" class="btn btn-sm btn-primary">
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-md-12 col-md-offset- text-center">
                 <button class="btn btn-primary">
@@ -38,8 +53,6 @@
             </div>
         </div>
     </form>
-
-    <!--<notify v-bind:alert="alert"></notify>-->
 </template>
 
 <script>
@@ -47,6 +60,10 @@
         props: {
             client: {
                 type: Object,
+                required: true
+            },
+            phones: {
+                type: Array,
                 required: true
             },
         },
@@ -83,6 +100,7 @@
                 formData.set('address', this.client.address);
                 formData.set('email', this.client.email);
                 formData.set('contact', this.client.contact);
+                formData.set('phones', JSON.stringify(this.phones));
 
                 this.$emit('submit', formData);
             },
@@ -92,6 +110,9 @@
                         this.typeDocs = response.data;
                     });
             },
+            addPhone(){
+                this.phones.push({number:''});
+            }
         },
         events: {
             'formErrors'(errors) {

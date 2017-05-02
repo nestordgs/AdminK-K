@@ -6,16 +6,22 @@
                 <th v-for="key in columns" @click="sortBy(key)" :class="{active: sortKey == key }" class="text-center">
                     {{ key | capitalize }}
                 </th>
+                <th v-if="link == true"></th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="entry in filteredData">
-                <td v-for="key in columns" v-if="key == 'CI/RIF'">
-                    <!--{{ entry[key] }}- {{ entry[key] }}-->
-                    {{ entry.id_type_doc }} - {{ entry.number_rif }}
+                <td v-for="key in columns" v-if="key == 'CI/RIF'" class="text-center">
+                    {{ entry.type_doc.initial }}{{ entry.number_rif }}
                 </td>
                 <td v-for="key in columns" v-if="key != 'CI/RIF'">
                     {{ entry[key] }}
+                </td>
+                <td v-if="link == true" class="text-center">
+                    <router-link :to="{ name: 'editClient', params: { id: entry.id } }" class="btn btn-sm btn-primary">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        Edit
+                    </router-link>
                 </td>
             </tr>
         </tbody>
@@ -27,6 +33,7 @@
         props: {
             data: Array,
             columns: Array,
+            link: Boolean,
             filterKey: String
         },
         data: function () {

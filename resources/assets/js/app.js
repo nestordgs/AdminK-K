@@ -29,12 +29,17 @@ const router = new VueRouter({
         {
             path:'/client/create',
             name: 'createCli',
-            component:Vue.component('create-client', require('./components/clients/CreateClient.vue'))
+            component: Vue.component('create-client', require('./components/clients/CreateClient.vue'))
         },
         {
             path:'/client/list',
             name: 'listCli',
-            component:Vue.component('list-client', require('./components/clients/ListClient.vue'))
+            component: Vue.component('list-client', require('./components/clients/ListClient.vue'))
+        },
+        {
+            path:'/client/:id',
+            name:'editClient',
+            component: Vue.component('edit-client', require('./components/clients/EditClient.vue'))
         }
     ]
 });
