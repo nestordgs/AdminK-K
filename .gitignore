@@ -12,3 +12,5 @@ node_modules/
 public/js/
 public/css/
 npm-debug\.log
+
+public/fonts/
