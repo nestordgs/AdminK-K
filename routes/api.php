@@ -23,9 +23,9 @@ Route::group(['middleware' => 'auth:api'], function () {
             'only' => ['index']
         ]
     );
+    Route::resource('client', 'ClientController',
+        [
+            'except' => ['destroy']
+        ]
+    );
 });
-Route::resource('client', 'ClientController',
-    [
-        'except' => ['destroy']
-    ]
-);
