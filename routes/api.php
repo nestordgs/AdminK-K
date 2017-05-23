@@ -29,3 +29,18 @@ Route::group(['middleware' => 'auth:api'], function () {
         ]
     );
 });
+Route::resource('typeWork', 'TypeWorkController',
+    [
+        'except' => ['destroy']
+    ]
+);
+Route::resource('uniteMeasure', 'UniteOfMeasureController',
+    [
+        'except' => ['destroy']
+    ]
+);
+Route::resource('work', 'WorkController',
+    [
+        'except' => ['destroy']
+    ]
+);

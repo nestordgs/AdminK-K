@@ -16,4 +16,12 @@ class TypeWork extends Model
     ];
 
     protected $table = 'type_works';
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function works()
+    {
+        return $this->hasMany('App\Work');
+    }
 }

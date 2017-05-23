@@ -16,4 +16,38 @@ class Work extends Model
     ];
 
     protected $table = 'works';
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function typeWork()
+    {
+        return $this->belongsTo('App\TypeWork');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function uniteOfMeasure()
+    {
+        return $this->belongsTo('App\UniteOfMeasure','unit_of_measure_id');
+    }
+
+    /**
+     * @param $directCost
+     * @return float|int
+     */
+    public static function calculateAdminCost($directCost)
+    {
+        return $directCost * 10 / 100;
+    }
+
+    /**
+     * @param $directCost
+     * @return float|int
+     */
+    public static function calculateUtility($directCost)
+    {
+        return $directCost * 30 / 100;
+    }
 }

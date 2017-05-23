@@ -16,4 +16,9 @@ class UniteOfMeasure extends Model
     ];
 
     protected $table = 'unit_of_measure';
+
+    public function works()
+    {
+        return $this->hasMany('App\Work');
+    }
 }
