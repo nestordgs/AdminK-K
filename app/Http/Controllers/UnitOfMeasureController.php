@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Validator;
-use App\UniteOfMeasure;
+use App\UnitOfMeasure;
 use Illuminate\Http\Request;
 
-class UniteOfMeasureController extends Controller
+class UnitOfMeasureController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class UniteOfMeasureController extends Controller
      */
     public function index()
     {
-        $unites= UniteOfMeasure::all();
+        $unites= UnitOfMeasure::all();
 
         return response()->json($unites);
     }
@@ -47,7 +47,7 @@ class UniteOfMeasureController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $unite = new UniteOfMeasure();
+        $unite = new UnitOfMeasure();
 
         $unite->name = $request->get('name');
         $unite->abbreviation = $request->get('abbreviation');
@@ -77,7 +77,7 @@ class UniteOfMeasureController extends Controller
      */
     public function edit($id)
     {
-        $unite = UniteOfMeasure::find($id);
+        $unite = UnitOfMeasure::find($id);
 
         if (count($unite) == 0) {
             return response()->json('Unite of Measure doesn\'t exist', 422);
@@ -104,7 +104,7 @@ class UniteOfMeasureController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $unite = UniteOfMeasure::find($id);
+        $unite = UnitOfMeasure::find($id);
 
         $unite->name = $request->get('name');
         $unite->abbreviation = $request->get('abbreviation');

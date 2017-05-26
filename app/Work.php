@@ -28,9 +28,9 @@ class Work extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function uniteOfMeasure()
+    public function unitOfMeasure()
     {
-        return $this->belongsTo('App\UniteOfMeasure','unit_of_measure_id');
+        return $this->belongsTo('App\UnitOfMeasure','unit_of_measure_id');
     }
 
     /**

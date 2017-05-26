@@ -34,7 +34,7 @@ Route::resource('typeWork', 'TypeWorkController',
         'except' => ['destroy']
     ]
 );
-Route::resource('uniteMeasure', 'UniteOfMeasureController',
+Route::resource('unitMeasure', 'UnitOfMeasureController',
     [
         'except' => ['destroy']
     ]

@@ -15,7 +15,7 @@ class WorkController extends Controller
      */
     public function index()
     {
-        $work = Work::with('typeWork', 'uniteOfMeasure')->get();
+        $work = Work::with('typeWork', 'unitOfMeasure')->get();
 
         return response()->json($work);
     }
@@ -85,7 +85,7 @@ class WorkController extends Controller
      */
     public function edit($id)
     {
-        $work = Work::with('typeWork', 'uniteOfMeasure')->find($id);
+        $work = Work::with('typeWork', 'unitOfMeasure')->find($id);
 
         if (count($work) == 0) {
             return response()->json('Client doesn\'t exist', 422);
